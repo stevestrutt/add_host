@@ -1,16 +1,31 @@
 ---
 - name : This is first play
+  hosts: localhost
+  gather_facts: false
+  tasks:
+  # - name: Here we are using Ansible Ping module to check the current hosts list in host group serverlist
+  #   ping:
+  - name: Here we are using Ansible Ping module to check the current hosts list in host group serverlist
+    debug:  
+      var: ansible_facts
+
+  - name: Here we are using Ansible add_host module to add a host to in-memory inventory
+    ansible.builtin.add_host:
+      name: serverA
+      groups: serverlist
+      foobar: 42
+  # - name: Here we are using Ansible Ping module to check the current hosts list in host group serverlist
+    # ping:
+    
+- name: List servers
   hosts: serverlist
-    gather_facts: no
+  gather_facts: True
   tasks:
-- name: Here we are using Ansible Ping module to check the current hosts list in host group serverlist.
-  ping:
-- name: Here we are using Ansible add_host module to add a host to in-memory inventory
-  add_host:
-    name: host-two
-    groups: serverlist
-- hosts: serverlist
-    gather_facts: no
-  tasks:
-- name: Again using Ansible Ping module to check the current hosts list in host group serverlist after using Ansible add_host module
-  ping:
+    - name: Again using Ansible Ping module to check the current hosts list in host group serverlist after using Ansible add_host module
+      ping:
+
+
+    # - name: Wait for the VSI to be SSH-able
+    #   wait_for_connection:
+    #   debug:
+    #   var: ansible_facts

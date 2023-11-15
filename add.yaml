@@ -1,0 +1,16 @@
+---
+- name : This is first play
+hosts: serverlist
+gather_facts: no
+tasks:
+- name: Here we are using Ansible Ping module to check the current hosts list in host group serverlist.
+ping:
+- name: Here we are using Ansible add_host module to add a host to in-memory inventory
+add_host:
+name: host-two
+groups: serverlist
+- hosts: serverlist
+gather_facts: no
+tasks:
+- name: Again using Ansible Ping module to check the current hosts list in host group serverlist after using Ansible add_host module
+ping:

@@ -36,7 +36,7 @@
 
   - name: Here we are using Ansible add_host module to add a host to in-memory inventory
     ansible.builtin.add_host:
-      name: servera
+      name: '52.118.145.13'
       ansible_host: '52.118.145.13'
       ansible_user: root
       groups: serverlist

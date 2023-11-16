@@ -36,7 +36,7 @@
 
   - name: Here we are using Ansible add_host module to add a host to in-memory inventory
     ansible.builtin.add_host:
-      name: '52.118.145.13'
+      name: servera
       ansible_host: '52.118.145.13'
       ansible_user: root
       groups: serverlist
@@ -44,6 +44,21 @@
   # - name: Here we are using Ansible Ping module to check the current hosts list in host group serverlist
     # ping:
     
+
+
+- name: Example playbook to showcase hostvars
+  hosts: all
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Display the specific hostvars that are set in the inventory for each host
+      ansible.builtin.debug:
+        var: hostvars[inventory_hostname]
+
+- name: Simple A record (IPV4 address) lookup for example.com
+  debug: msg="{{ lookup('dig', 'example.com.')}}"
+
+
 - name: List servers
   hosts: serverlist
   gather_facts: True

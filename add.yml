@@ -11,7 +11,9 @@
 
   - name: Here we are using Ansible add_host module to add a host to in-memory inventory
     ansible.builtin.add_host:
-      name: serverA
+      name: servera
+      ansible_host: '52.118.145.13'
+      ansible_user: root
       groups: serverlist
       foobar: 42
   # - name: Here we are using Ansible Ping module to check the current hosts list in host group serverlist

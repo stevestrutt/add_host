@@ -25,14 +25,14 @@
       msg: "{{dfout.stdout_lines}}" 
 
 
-  - name: List local file system 
-    ansible.builtin.shell:
-        chdir: ~/.ssh
-        cmd: ls -l  
-    register: lfout
+  # - name: List local file system 
+  #   ansible.builtin.shell:
+  #       chdir: ~/.ssh
+  #       cmd: ls -l  
+  #   register: lfout
    
-  - debug:
-      msg: "{{lfout.stdout_lines}}"        
+  # - debug:
+  #     msg: "{{lfout.stdout_lines}}"        
 
   - name: Here we are using Ansible add_host module to add a host to in-memory inventory
     ansible.builtin.add_host:
@@ -53,12 +53,33 @@
     - name: check facts 
       debug:
         var: ansible_facts  
-    - name: This command will change the worki    
+
+    - name: List remote directory
       ansible.builtin.shell:
-        cmd: ls -l 
-        cmd: pwd
+          cmd: ls -l
+      register: lsout
+    
+    - debug:
+        msg: "{{lsout.stdout_lines}}" 
 
 
-    # - name: Wait for the VSI to be SSH-able
-    #   wait_for_connection:
-    #   
+    - name: List remote filesystems 
+      ansible.builtin.shell:
+          cmd: df  
+      register: dfout
+    
+    - debug:
+        msg: "{{dfout.stdout_lines}}" 
+
+    - name: List remote filesystems 
+      ansible.builtin.shell:
+        chdir: "/tmp/tfws-368831675"
+        cmd: ls -l  
+        register: lfout
+
+    - debug:
+        msg: "{lfout.stdout_lines}}" 
+
+  # - name: Wait for the VSI to be SSH-able
+  #   wait_for_connection:
+  #   

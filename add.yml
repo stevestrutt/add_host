@@ -28,6 +28,10 @@
     - name: check facts 
       debug:
         var: ansible_facts  
+    - name: This command will change the worki    
+      ansible.builtin.shell:
+        cmd: ls -l 
+        cmd: pwd
 
 
     # - name: Wait for the VSI to be SSH-able

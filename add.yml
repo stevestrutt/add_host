@@ -8,6 +8,31 @@
   - name: Here we are using Ansible Ping module to check the current hosts list in host group serverlist
     debug:  
       var: ansible_facts
+  - name: List local directory
+    ansible.builtin.shell:
+        cmd: ls -l
+    register: lsout
+   
+  - debug:
+      msg: "{{lsout.stdout_lines}}" 
+
+  - name: List filesystems 
+    ansible.builtin.shell:
+        cmd: df  
+    register: dfout
+   
+  - debug:
+      msg: "{{dfout.stdout_lines}}" 
+
+
+  - name: List local file system 
+    ansible.builtin.shell:
+        chdir: ~/.ssh
+        cmd: ls -l  
+    register: lfout
+   
+  - debug:
+      msg: "{{lfout.stdout_lines}}"        
 
   - name: Here we are using Ansible add_host module to add a host to in-memory inventory
     ansible.builtin.add_host:

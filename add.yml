@@ -5,24 +5,24 @@
   tasks:
   # - name: Here we are using Ansible Ping module to check the current hosts list in host group serverlist
   #   ping:
-  - name: Here we are using Ansible Ping module to check the current hosts list in host group serverlist
-    debug:  
-      var: ansible_facts
-  - name: List local directory
-    ansible.builtin.shell:
-        cmd: ls -l
-    register: lsout
+  # - name: Here we are using Ansible Ping module to check the current hosts list in host group serverlist
+  #   debug:  
+  #     var: ansible_facts
+  # - name: List local directory
+  #   ansible.builtin.shell:
+  #       cmd: ls -l
+  #   register: lsout
    
-  - debug:
-      msg: "{{lsout.stdout_lines}}" 
+  # - debug:
+  #     msg: "{{lsout.stdout_lines}}" 
 
-  - name: List filesystems 
-    ansible.builtin.shell:
-        cmd: df  
-    register: dfout
+  # - name: List filesystems 
+  #   ansible.builtin.shell:
+  #       cmd: df  
+  #   register: dfout
    
-  - debug:
-      msg: "{{dfout.stdout_lines}}" 
+  # - debug:
+  #     msg: "{{dfout.stdout_lines}}" 
 
 
   # - name: List local file system 
@@ -55,8 +55,14 @@
       ansible.builtin.debug:
         var: hostvars[inventory_hostname]
 
-- name: Simple A record (IPV4 address) lookup for example.com
-  debug: msg="{{ lookup('dig', 'example.com.')}}"
+
+
+- name: Look up A (IPv4) records for example.org
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - debug:
+        msg: "{{ query('community.dns.lookup', 'servera') }}"
 
 
 - name: List servers

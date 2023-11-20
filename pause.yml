@@ -1,0 +1,9 @@
+---
+- name : This is first play
+  hosts: localhost
+  gather_facts: false
+  tasks:
+
+  - name: Pause for 1 minutes 
+    pause:
+      minutes: 1

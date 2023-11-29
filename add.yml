@@ -57,12 +57,12 @@
 
 
 
-- name: Look up A (IPv4) records for example.org
-  hosts: localhost
-  gather_facts: false
-  tasks:
-    - debug:
-        msg: "{{ query('community.dns.lookup', 'servera') }}"
+# - name: Look up A (IPv4) records for example.org
+#   hosts: localhost
+#   gather_facts: false
+#   tasks:
+#     - debug:
+#         msg: "{{ query('community.dns.lookup', 'servera') }}"
 
 
 - name: List servers

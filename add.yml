@@ -38,6 +38,7 @@
     ansible.builtin.add_host:
       name: servera
       ansible_host: '52.118.145.13'
+      ansible_connection: ssh
       ansible_user: root
       groups: serverlist
       foobar: 42

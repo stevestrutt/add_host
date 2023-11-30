@@ -58,7 +58,7 @@
 
 
 - name: List servers
-  hosts: serverlist
+  hosts: all
   gather_facts: True
   tasks:
     # - name: Again using Ansible Ping module to check the current hosts list in host group serverlist after using Ansible add_host module

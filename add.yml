@@ -57,21 +57,12 @@
         var: hostvars[inventory_hostname]
 
 
-
-# - name: Look up A (IPv4) records for example.org
-#   hosts: localhost
-#   gather_facts: false
-#   tasks:
-#     - debug:
-#         msg: "{{ query('community.dns.lookup', 'servera') }}"
-
-
 - name: List servers
   hosts: serverlist
   gather_facts: True
   tasks:
-    - name: Again using Ansible Ping module to check the current hosts list in host group serverlist after using Ansible add_host module
-      ping:
+    # - name: Again using Ansible Ping module to check the current hosts list in host group serverlist after using Ansible add_host module
+    #   ping:
     - name: check facts 
       debug:
         var: ansible_facts  
